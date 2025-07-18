@@ -1,0 +1,71 @@
+Unter Windows:
+Lade ESP-IDF Tools Installer:
+👉 https://dl.espressif.com/dl/esp-idf/
+
+Wähle beim Setup:
+
+ESP-IDF v5.x oder höher
+
+Zielchip: esp32c6
+
+🛠 Schritt 2: Projekt vorbereiten
+Projektstruktur:
+Erstelle einen Ordner, z. B.:
+
+bash
+Kopieren
+Bearbeiten
+mkdir -p ~/esp/taupunkt_steuerung/main
+cd ~/esp/taupunkt_steuerung
+Kopiere folgenden Inhalt dorthin:
+
+main.c → dein Hauptcode
+
+zigbee_ctrl.h → nach main/include/zigbee_ctrl.h
+
+zigbee_ctrl.c → nach main/zigbee_ctrl.c
+
+CMakeLists.txt → in main/
+
+CMakeLists.txt → auch im Hauptverzeichnis:
+
+cmake
+Kopieren
+Bearbeiten
+cmake_minimum_required(VERSION 3.5)
+include($ENV{IDF_PATH}/tools/cmake/project.cmake)
+project(taupunkt_steuerung)
+BME280 / OLED:
+Wenn du Bibliotheken für Adafruit_BME280 und SSD1306 brauchst, kannst du diese als Komponenten mit hinzufügen oder alternativ I2C direkt nutzen.
+
+Oder du nutzt meine vorbereitete Version auf Wunsch.
+
+⚙️ Schritt 3: ESP32-C6 als Ziel festlegen
+bash
+Kopieren
+Bearbeiten
+idf.py set-target esp32c6
+🧪 Schritt 4: Build & Flash
+Flashen (ESP32-C6 per USB verbunden):
+bash
+Kopieren
+Bearbeiten
+idf.py build
+idf.py flash monitor
+Beim ersten Flashen fragt ESP-IDF ggf. den Port ab (z. B. /dev/ttyUSB0 oder COMx).
+
+🔍 Schritt 5: Im Terminal überwachen
+bash
+Kopieren
+Bearbeiten
+idf.py monitor
+Du siehst dort die:
+
+Messwerte
+
+Taupunkte
+
+ob Lüftung ON/OFF ist
+
+ob Zigbee-Geräte joinen
+
